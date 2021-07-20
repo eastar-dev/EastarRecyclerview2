@@ -23,6 +23,7 @@ open class ItemBindingListAdapter<DATA, BIND : ViewDataBinding>(
         const val NoBrId: Int = -1
     }
 
+    @CallSuper
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<BIND> {
         val itemView = getItemView(layoutResId, parent, viewType)
         return Holder(itemView)
