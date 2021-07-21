@@ -6,11 +6,11 @@ import androidx.core.view.GestureDetectorCompat
 import androidx.recyclerview.widget.RecyclerView
 
 @Suppress("unused")
-fun RecyclerView.addOnItemClickedListener(callback: (view: View, position: Int) -> Unit) {
+fun RecyclerView.addOnItemClickedListener(callback: (view: View, parent: View, position: Int) -> Unit) {
     addOnItemTouchListener(OnItemClickedListener(context, callback))
 }
 
-class OnItemClickedListener(context: Context, private val mListener: (view: View, position: Int) -> Unit) : RecyclerView.OnItemTouchListener {
+class OnItemClickedListener(context: Context, private val mListener: (view: View, parent: View, position: Int) -> Unit) : RecyclerView.OnItemTouchListener {
     private var mGestureDetector: GestureDetectorCompat = GestureDetectorCompat(context, object : GestureDetector.SimpleOnGestureListener() {
         override fun onSingleTapUp(e: MotionEvent?) = true
     }).apply {
@@ -31,7 +31,7 @@ class OnItemClickedListener(context: Context, private val mListener: (view: View
                 }
             }
             val position = view.getChildLayoutPosition(childView)
-            mListener.invoke(callbackView, position)
+            mListener.invoke(callbackView, childView, position)
             childView.playSoundEffect(SoundEffectConstants.CLICK)
             return true
         }

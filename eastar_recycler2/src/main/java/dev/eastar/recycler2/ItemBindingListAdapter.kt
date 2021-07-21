@@ -5,7 +5,6 @@ package dev.eastar.recycler2
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -23,12 +22,7 @@ open class ItemBindingListAdapter<DATA, BIND : ViewDataBinding>(
         const val NoBrId: Int = -1
     }
 
-    final override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<BIND> {
-        return onCreateViewHolder2(parent, viewType)
-    }
-
-    @CallSuper
-    open fun onCreateViewHolder2(parent: ViewGroup, viewType: Int): Holder<BIND> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<BIND> {
         val itemView = getItemView(layoutResId, parent, viewType)
         return Holder(itemView)
     }
@@ -37,12 +31,7 @@ open class ItemBindingListAdapter<DATA, BIND : ViewDataBinding>(
         return LayoutInflater.from(parent.context).inflate(layer, parent, false)
     }
 
-    final override fun onBindViewHolder(holder: Holder<BIND>, position: Int) {
-        onBindViewHolder2(holder, position)
-    }
-
-    @CallSuper
-    fun onBindViewHolder2(holder: Holder<BIND>, position: Int) {
+    override fun onBindViewHolder(holder: Holder<BIND>, position: Int) {
         if (brId > NoBrId) {
             holder.itemBinding.setVariable(brId, getItem(position))
             holder.itemBinding.executePendingBindings()

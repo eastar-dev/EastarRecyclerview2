@@ -23,7 +23,6 @@ open class ItemBindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
         const val NoBrId: Int = -1
     }
 
-    @CallSuper
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<BIND> {
         val itemView = getItemView(layoutResId, parent, viewType)
         return Holder(itemView)
@@ -33,7 +32,6 @@ open class ItemBindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
         return LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
     }
 
-    @CallSuper
     override fun onBindViewHolder(holder: Holder<BIND>, position: Int) {
         if (brId > NoBrId) {
             holder.itemBinding.setVariable(brId, getItem(position))
