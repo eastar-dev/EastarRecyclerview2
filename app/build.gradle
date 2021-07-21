@@ -4,8 +4,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "29.0.3"
-
+    buildToolsVersion '29.0.3'
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 30
@@ -36,7 +35,5 @@ dependencies {
     debugApi 'com.github.eastar-dev.EastarLog2:log:2.1.9'
     releaseApi 'com.github.eastar-dev.EastarLog2:logNoOp:2.1.9'
 
-
-//    implementation 'com.github.eastar-dev:EastarRecyclerview:1.0.3'
     implementation project(':eastar_recycler2')
 }

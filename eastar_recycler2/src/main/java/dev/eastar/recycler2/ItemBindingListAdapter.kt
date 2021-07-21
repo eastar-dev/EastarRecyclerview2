@@ -23,8 +23,12 @@ open class ItemBindingListAdapter<DATA, BIND : ViewDataBinding>(
         const val NoBrId: Int = -1
     }
 
+    final override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<BIND> {
+        return onCreateViewHolder2(parent, viewType)
+    }
+
     @CallSuper
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<BIND> {
+    open fun onCreateViewHolder2(parent: ViewGroup, viewType: Int): Holder<BIND> {
         val itemView = getItemView(layoutResId, parent, viewType)
         return Holder(itemView)
     }
@@ -33,8 +37,12 @@ open class ItemBindingListAdapter<DATA, BIND : ViewDataBinding>(
         return LayoutInflater.from(parent.context).inflate(layer, parent, false)
     }
 
+    final override fun onBindViewHolder(holder: Holder<BIND>, position: Int) {
+        onBindViewHolder2(holder, position)
+    }
+
     @CallSuper
-    override fun onBindViewHolder(holder: Holder<BIND>, position: Int) {
+    fun onBindViewHolder2(holder: Holder<BIND>, position: Int) {
         if (brId > NoBrId) {
             holder.itemBinding.setVariable(brId, getItem(position))
             holder.itemBinding.executePendingBindings()
