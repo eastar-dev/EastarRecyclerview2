@@ -5,7 +5,6 @@ package dev.eastar.recycler2
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -37,6 +36,10 @@ open class ItemBindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
             holder.itemBinding.setVariable(brId, getItem(position))
             holder.itemBinding.executePendingBindings()
         }
+    }
+
+    open fun onBindViewHolder(binder: BIND, data: DATA) {
+
     }
 
     class Holder<BIND : ViewDataBinding>(itemView: View) : RecyclerView.ViewHolder(itemView) {

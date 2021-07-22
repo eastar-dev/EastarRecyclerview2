@@ -38,6 +38,10 @@ open class ItemBindingListAdapter<DATA, BIND : ViewDataBinding>(
         }
     }
 
+    open fun onBindViewHolder(binder: BIND, data: DATA) {
+
+    }
+
     class Holder<BIND : ViewDataBinding>(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemBinding: BIND = DataBindingUtil.bind(itemView)!!
     }

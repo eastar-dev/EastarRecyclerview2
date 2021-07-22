@@ -2,6 +2,7 @@ package dev.eastar.recycler2
 
 import android.content.Context
 import android.view.*
+import android.widget.Checkable
 import androidx.core.view.GestureDetectorCompat
 import androidx.recyclerview.widget.RecyclerView
 
@@ -26,7 +27,7 @@ class OnItemClickedListener(context: Context, private val mListener: (view: View
             (childView as? ViewGroup)?.let {
                 val childChildView = it.findChildViewUnder(e.x - it.left, e.y - it.top)
                 childChildView?.run {
-                    if (isEnabled && (childChildView.isClickable || childChildView.isLongClickable))
+                    if (isEnabled && (childChildView.isClickable || childChildView is Checkable || childChildView.isLongClickable))
                         callbackView = childChildView
                 }
             }
