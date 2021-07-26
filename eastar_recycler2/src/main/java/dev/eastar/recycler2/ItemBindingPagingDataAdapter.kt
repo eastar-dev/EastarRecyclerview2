@@ -29,11 +29,11 @@ open class ItemBindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
         return holder
     }
 
-    open fun getItemView(@LayoutRes layoutResId: Int, parent: ViewGroup, viewType: Int): View {
+    fun getItemView(@LayoutRes layoutResId: Int, parent: ViewGroup, viewType: Int): View {
         return LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
     }
 
-    open fun getViewHolder(itemView: View): Holder<BIND> {
+    fun getViewHolder(itemView: View): Holder<BIND> {
         return Holder(itemView)
     }
 
@@ -45,9 +45,11 @@ open class ItemBindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
             holder.itemBinding.setVariable(brId, getItem(position))
             holder.itemBinding.executePendingBindings()
         }
+        onBindViewHolder(holder.itemBinding, getItem(position))
     }
 
-    open fun onBindViewHolder(binder: BIND, data: DATA) {
+    fun onBindViewHolder(binder: BIND, data: DATA?) {
+
     }
 
     class Holder<BIND : ViewDataBinding>(itemView: View) : RecyclerView.ViewHolder(itemView) {
