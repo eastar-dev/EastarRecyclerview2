@@ -22,10 +22,7 @@ open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
         const val NoBrId: Int = -1
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): Holder<BIND> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<BIND> {
         val itemView = getItemView(layoutResId, parent, viewType)
         val holder = getViewHolder(itemView)
         onCreateViewHolder(holder.itemBinding, viewType)
@@ -40,7 +37,7 @@ open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
         return Holder(itemView)
     }
 
-    open fun onCreateViewHolder(itemBinding: BIND, viewType: Int) {
+    open fun onCreateViewHolder(binder: BIND, viewType: Int) {
     }
 
     override fun onBindViewHolder(holder: Holder<BIND>, position: Int) {
@@ -48,9 +45,10 @@ open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
             holder.itemBinding.setVariable(brId, getItem(position))
             holder.itemBinding.executePendingBindings()
         }
+        onBindViewHolder(holder.itemBinding, getItem(position))
     }
 
-    open fun onBindViewHolder(binder: BIND, data: DATA) {
+    open fun onBindViewHolder(binder: BIND, data: DATA?) {
     }
 
     class Holder<BIND : ViewDataBinding>(itemView: View) : RecyclerView.ViewHolder(itemView) {

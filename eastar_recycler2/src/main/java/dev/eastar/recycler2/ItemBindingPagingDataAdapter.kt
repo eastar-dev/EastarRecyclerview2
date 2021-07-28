@@ -37,7 +37,7 @@ open class ItemBindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
         return Holder(itemView)
     }
 
-    open fun onCreateViewHolder(itemBinding: BIND, viewType: Int) {
+    open fun onCreateViewHolder(binder: BIND, viewType: Int) {
     }
 
     override fun onBindViewHolder(holder: Holder<BIND>, position: Int) {
@@ -45,9 +45,10 @@ open class ItemBindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
             holder.itemBinding.setVariable(brId, getItem(position))
             holder.itemBinding.executePendingBindings()
         }
+        onBindViewHolder(holder.itemBinding, getItem(position))
     }
 
-    open fun onBindViewHolder(binder: BIND, data: DATA) {
+    open fun onBindViewHolder(binder: BIND, data: DATA?) {
     }
 
     class Holder<BIND : ViewDataBinding>(itemView: View) : RecyclerView.ViewHolder(itemView) {
