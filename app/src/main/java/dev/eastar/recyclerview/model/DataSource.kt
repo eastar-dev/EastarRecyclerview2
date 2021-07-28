@@ -1,11 +1,18 @@
 package dev.eastar.recyclerview.model
 
+import androidx.recyclerview.widget.DiffUtil
+
 data class Data(
     val icon: String,
     val name: String,
 )
 
 val ICON = "https://source.unsplash.com/collection/"
+
+val diffUtil = object : DiffUtil.ItemCallback<Data>() {
+    override fun areItemsTheSame(oldItem: Data, newItem: Data) = oldItem.name == newItem.name
+    override fun areContentsTheSame(oldItem: Data, newItem: Data) = oldItem == newItem
+}
 
 val DATA_SOURCE = arrayOf(
     "Zak Haile",

@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-open class ItemBindingListAdapter<DATA, BIND : ViewDataBinding>(
+open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
     private val layoutResId: Int,
     itemCallback: DiffUtil.ItemCallback<DATA>,
     private val brId: Int = NoBrId
-) : ListAdapter<DATA, ItemBindingListAdapter.Holder<BIND>>(itemCallback) {
+) : ListAdapter<DATA, BindingListAdapter.Holder<BIND>>(itemCallback) {
 
     companion object {
         const val NoBrId: Int = -1

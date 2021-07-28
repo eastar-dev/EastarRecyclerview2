@@ -28,7 +28,7 @@ class SettingsActivity : AppCompatActivity() {
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
-//            setIntent("ArrayAdapterDemo", ArrayAdapterDemo::class.java)
+            setIntent("BindingListAdapterDemo", BindingListAdapterDemo::class.java)
 //            setIntent("BindingDataArrayAdapterDemo", BindingDataArrayAdapterDemo::class.java)
 //            setIntent("BindingViewArrayAdapterDemo", BindingViewArrayAdapterDemo::class.java)
 //            setIntent("DiffArrayAdapterDemo", DiffArrayAdapterDemo::class.java)

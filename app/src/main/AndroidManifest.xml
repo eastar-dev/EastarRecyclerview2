@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name=".ArrayAdapterDemo" />-->
+        <activity android:name=".BindingListAdapterDemo" android:exported="true" />
 <!--        <activity android:name=".BindingDataArrayAdapterDemo" />-->
 <!--        <activity android:name=".BindingViewArrayAdapterDemo" />-->
 <!--        <activity android:name=".DiffArrayAdapterDemo" />-->

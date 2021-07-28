@@ -20,7 +20,7 @@
             android:layout_margin="16dp"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
-            app:glideImage="@{data.icon}"
+            app:srcUrl="@{data.icon}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView"
             app:layout_constraintStart_toStartOf="parent"
