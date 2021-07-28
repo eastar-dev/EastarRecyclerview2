@@ -9,4 +9,4 @@ open class DataBindingListAdapter<DATA>(
     private val layoutResId: Int,
     itemCallback: DiffUtil.ItemCallback<DATA>,
     private val brId: Int
-) : BindingListAdapter<DATA, ViewDataBinding>(layoutResId, itemCallback, brId)
+) : BindingListAdapter<DATA, ViewDataBinding>(itemCallback, layoutResId, brId)
