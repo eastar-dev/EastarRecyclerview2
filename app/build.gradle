@@ -35,5 +35,5 @@ dependencies {
     debugApi 'com.github.eastar-dev.EastarLog2:log:2.1.9'
     releaseApi 'com.github.eastar-dev.EastarLog2:logNoOp:2.1.9'
 
-    implementation project(':eastar_recycler2')
+    implementation 'com.github.eastar-dev:EastarRecyclerview2:f153ad722f'
 }

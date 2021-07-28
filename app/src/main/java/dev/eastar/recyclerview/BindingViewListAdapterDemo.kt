@@ -2,6 +2,7 @@ package dev.eastar.recyclerview
 
 import android.os.Bundle
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import dev.eastar.recycler2.BindingListAdapter
 import dev.eastar.recyclerview.databinding.RecyclerviewDemoBinding
@@ -28,7 +29,7 @@ class BindingViewListAdapterDemo : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(binder: RecyclerviewDemoItemWithoutDatabindingBinding, data: Data) {
-            super.onBindViewHolder(binder, data)
+            //super.onBindViewHolder(binder, data)
             binder.imageView.setImageUrl(data.icon)
             binder.textView.text = data.name
         }
