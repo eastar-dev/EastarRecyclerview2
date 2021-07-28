@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dev.eastar.recycler2.BindingListAdapter
 import dev.eastar.recyclerview.databinding.RecyclerviewDemoBinding
-import dev.eastar.recyclerview.databinding.RecyclerviewDemoItemBinding
 import dev.eastar.recyclerview.databinding.RecyclerviewDemoItemWithoutDatabindingBinding
 import dev.eastar.recyclerview.model.*
 
@@ -21,7 +20,7 @@ class BindingViewListAdapterDemo : AppCompatActivity() {
         adapter.submitList(items)
     }
 
-    class DemoAdapter : BindingListAdapter<Data, RecyclerviewDemoItemWithoutDatabindingBinding>(R.layout.recyclerview_demo_item_without_databinding, diffUtil) {
+    class DemoAdapter : BindingListAdapter<Data, RecyclerviewDemoItemWithoutDatabindingBinding>(diffUtil, R.layout.recyclerview_demo_item_without_databinding) {
         override fun onBindViewHolder(binder: RecyclerviewDemoItemWithoutDatabindingBinding, data: Data) {
             super.onBindViewHolder(binder, data)
             binder.imageView.setImageUrl(data.icon)
