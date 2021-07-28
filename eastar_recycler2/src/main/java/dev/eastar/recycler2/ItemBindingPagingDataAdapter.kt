@@ -5,6 +5,7 @@ package dev.eastar.recycler2
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -22,6 +23,7 @@ open class ItemBindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
         const val NoBrId: Int = -1
     }
 
+    @CallSuper
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<BIND> {
         val itemView = getItemView(layoutResId, parent, viewType)
         val holder = getViewHolder(itemView, viewType)
@@ -40,6 +42,7 @@ open class ItemBindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
     open fun onCreateViewHolder(binder: BIND, viewType: Int) {
     }
 
+    @CallSuper
     override fun onBindViewHolder(holder: Holder<BIND>, position: Int) {
         if (brId > NoBrId) {
             holder.itemBinding.setVariable(brId, getItem(position))
