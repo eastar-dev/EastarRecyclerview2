@@ -3,11 +3,11 @@
     <PreferenceCategory app:title="With Holder Demo">
 
         <Preference
-            app:key="BindingListAdapterDemo"
-            app:title="BindingListAdapterDemo" />
+            app:key="BindingViewListAdapterDemo"
+            app:title="BindingViewListAdapterDemo" />
         <Preference
-            app:key="DiffArrayAdapterDemo"
-            app:title="DiffArrayAdapterDemo" />
+            app:key="BindingDataListAdapterDemo"
+            app:title="BindingDataListAdapterDemo" />
 
     </PreferenceCategory>
 

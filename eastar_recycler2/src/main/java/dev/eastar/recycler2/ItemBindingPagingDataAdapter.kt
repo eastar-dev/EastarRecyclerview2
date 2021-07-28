@@ -24,7 +24,7 @@ open class ItemBindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<BIND> {
         val itemView = getItemView(layoutResId, parent, viewType)
-        val holder = getViewHolder(itemView)
+        val holder = getViewHolder(itemView, viewType)
         onCreateViewHolder(holder.itemBinding, viewType)
         return holder
     }
@@ -33,7 +33,7 @@ open class ItemBindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
         return LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
     }
 
-    open fun getViewHolder(itemView: View): Holder<BIND> {
+    open fun getViewHolder(itemView: View, viewType: Int): Holder<BIND> {
         return Holder(itemView)
     }
 
@@ -55,5 +55,5 @@ open class ItemBindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
         var itemBinding: BIND = DataBindingUtil.bind(itemView)!!
     }
 
-    fun getItemAtPosition(position: Int): DATA? = super.getItem(position)
+    fun getItemAtPosition(position: Int): DATA? = getItem(position)
 }

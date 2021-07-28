@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import dev.eastar.recycler2.BindingListAdapter
 import dev.eastar.recyclerview.databinding.RecyclerviewDemoBinding
 import dev.eastar.recyclerview.databinding.RecyclerviewDemoItemBinding
+import dev.eastar.recyclerview.databinding.RecyclerviewDemoItemWithoutDatabindingBinding
 import dev.eastar.recyclerview.model.*
 
-class BindingListAdapterDemo : AppCompatActivity() {
+class BindingViewListAdapterDemo : AppCompatActivity() {
     private lateinit var bb: RecyclerviewDemoBinding
     private val items = DATA_SOURCE.mapIndexed { index, text -> Data("$ICON$index", text) }
 
@@ -17,15 +18,14 @@ class BindingListAdapterDemo : AppCompatActivity() {
         setContentView(bb.root)
         val adapter = DemoAdapter()
         bb.list.adapter = adapter
-
         adapter.submitList(items)
     }
 
-    class DemoAdapter : BindingListAdapter<Data, RecyclerviewDemoItemBinding>(R.layout.recyclerview_demo_item, diffUtil) {
-        override fun onBindViewHolder(binder: RecyclerviewDemoItemBinding, data: Data) {
+    class DemoAdapter : BindingListAdapter<Data, RecyclerviewDemoItemWithoutDatabindingBinding>(R.layout.recyclerview_demo_item_without_databinding, diffUtil) {
+        override fun onBindViewHolder(binder: RecyclerviewDemoItemWithoutDatabindingBinding, data: Data) {
             super.onBindViewHolder(binder, data)
             binder.imageView.setImageUrl(data.icon)
+            binder.textView.text = data.name
         }
     }
-
 }

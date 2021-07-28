@@ -24,7 +24,7 @@ open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<BIND> {
         val itemView = getItemView(layoutResId, parent, viewType)
-        val holder = getViewHolder(itemView)
+        val holder = getViewHolder(itemView, viewType)
         onCreateViewHolder(holder.itemBinding, viewType)
         return holder
     }
@@ -33,7 +33,7 @@ open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
         return LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
     }
 
-    open fun getViewHolder(itemView: View): Holder<BIND> {
+    open fun getViewHolder(itemView: View, viewType: Int): Holder<BIND> {
         return Holder(itemView)
     }
 
@@ -48,12 +48,12 @@ open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
         onBindViewHolder(holder.itemBinding, getItem(position))
     }
 
-    open fun onBindViewHolder(binder: BIND, data: DATA?) {
+    open fun onBindViewHolder(binder: BIND, data: DATA) {
     }
 
     class Holder<BIND : ViewDataBinding>(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemBinding: BIND = DataBindingUtil.bind(itemView)!!
     }
 
-    fun getItemAtPosition(position: Int): DATA? = super.getItem(position)
+    fun getItemAtPosition(position: Int): DATA = getItem(position)
 }
