@@ -7,20 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
+import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
-open class ItemBindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
-    private val layoutResId: Int,
-    itemCallback: DiffUtil.ItemCallback<DATA>,
+open class BindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
+    @NonNull itemCallback: DiffUtil.ItemCallback<DATA>,
+    private val layoutResId: Int = NoResId,
     private val brId: Int = NoBrId
-) : PagingDataAdapter<DATA, ItemBindingPagingDataAdapter.Holder<BIND>>(itemCallback) {
+) : PagingDataAdapter<DATA, BindingPagingDataAdapter.Holder<BIND>>(itemCallback) {
 
     companion object {
         const val NoBrId: Int = -1
+        const val NoResId: Int = -1
     }
 
     @CallSuper

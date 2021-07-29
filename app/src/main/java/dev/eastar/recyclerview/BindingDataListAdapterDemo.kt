@@ -22,7 +22,5 @@ class BindingDataListAdapterDemo : AppCompatActivity() {
         adapter.submitList(items)
     }
 
-    class DemoAdapter : DataBindingListAdapter<Data>(R.layout.recyclerview_demo_item, diffUtil, BR.data)
-    //same to
-    //class DemoAdapter : BindingListAdapter<Data, ViewDataBinding>(R.layout.recyclerview_demo_item, diffUtil, BR.data)
+    class DemoAdapter : DataBindingListAdapter<Data>(diffUtil, R.layout.recyclerview_demo_item, BR.data)
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
+import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
@@ -13,7 +14,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
 open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
-    itemCallback: DiffUtil.ItemCallback<DATA>,
+    @NonNull itemCallback: DiffUtil.ItemCallback<DATA>,
     private val layoutResId: Int = NoResId,
     private val brId: Int = NoBrId
 ) : ListAdapter<DATA, BindingListAdapter.Holder<BIND>>(itemCallback) {

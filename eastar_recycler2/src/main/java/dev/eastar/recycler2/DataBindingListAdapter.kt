@@ -6,7 +6,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 
 open class DataBindingListAdapter<DATA>(
-    private val layoutResId: Int,
     itemCallback: DiffUtil.ItemCallback<DATA>,
-    private val brId: Int
+    layoutResId: Int = NoResId,
+    brId: Int = NoBrId
 ) : BindingListAdapter<DATA, ViewDataBinding>(itemCallback, layoutResId, brId)
