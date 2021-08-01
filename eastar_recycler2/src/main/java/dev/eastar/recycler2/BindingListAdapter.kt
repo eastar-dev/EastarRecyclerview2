@@ -22,15 +22,20 @@ open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
 
     @CallSuper
     override fun onBindViewHolder(holder: Holder<BIND>, position: Int) {
-        if (holder.brId > NO_ID) {
-            holder.itemBinding.setVariable(holder.brId, getItem(position))
-            holder.itemBinding.executePendingBindings()
-        }
+        onBindData(holder, position)
         onBindViewHolder(holder.itemBinding, getItem(position))
     }
 
-    open fun onBindViewHolder(binder: BIND, data: DATA?) {
+    private fun onBindData(holder: Holder<BIND>, position: Int) {
+        if (holder.brId > NO_ID) {
+            holder.itemBinding.setVariable(holder.brId, getBindingItem(getItem(position)))
+            holder.itemBinding.executePendingBindings()
+        }
     }
+
+    open fun getBindingItem(data: DATA): Any = data as Any
+
+    open fun onBindViewHolder(binder: BIND, data: DATA) {}
 
     @CallSuper
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<BIND> {
