@@ -4,6 +4,7 @@ package dev.eastar.recycler2
 
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.NO_ID
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
@@ -16,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
     @NonNull itemCallback: DiffUtil.ItemCallback<DATA>,
-    private val defaultLayoutId: Int = BindingPagingDataAdapter.NO_ID,
-    private val defaultBrId: Int = BindingPagingDataAdapter.NO_ID
+    private val defaultLayoutId: Int = NO_ID,
+    private val defaultBrId: Int = NO_ID
 ) : ListAdapter<DATA, BindingListAdapter.Holder<BIND>>(itemCallback) {
 
     @CallSuper
@@ -65,9 +66,5 @@ open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
 
     class Holder<BIND : ViewDataBinding>(itemView: View, val brId: Int) : RecyclerView.ViewHolder(itemView) {
         var itemBinding: BIND = DataBindingUtil.bind(itemView)!!
-    }
-
-    companion object {
-        const val NO_ID: Int = -1
     }
 }

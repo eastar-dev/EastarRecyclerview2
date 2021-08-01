@@ -4,6 +4,7 @@ package dev.eastar.recycler2
 
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.NO_ID
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
@@ -65,9 +66,5 @@ open class BindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
 
     class Holder<BIND : ViewDataBinding>(itemView: View, val brId: Int) : RecyclerView.ViewHolder(itemView) {
         var itemBinding: BIND = DataBindingUtil.bind(itemView)!!
-    }
-
-    companion object {
-        const val NO_ID: Int = -1
     }
 }
