@@ -26,6 +26,8 @@ open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
         onBindViewHolder(holder.itemBinding, getItem(position))
     }
 
+    open fun onBindViewHolder(binder: BIND, data: DATA) {}
+
     private fun onBindData(holder: Holder<BIND>, position: Int) {
         if (holder.brId > NO_ID) {
             holder.itemBinding.setVariable(holder.brId, getBindingItem(getItem(position)))
@@ -35,33 +37,31 @@ open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
 
     open fun getBindingItem(data: DATA): Any = data as Any
 
-    open fun onBindViewHolder(binder: BIND, data: DATA) {}
-
     @CallSuper
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<BIND> {
-        val itemView = getItemView(parent, viewType)
+        val itemView = getView(parent, viewType)
         val holder = getViewHolder(itemView, viewType)
         onCreateViewHolder(holder.itemBinding, viewType)
         return holder
     }
 
-    open fun getItemView(parent: ViewGroup, viewType: Int): View {
-        @LayoutRes val layoutResId = getItemLayoutId(viewType)
+    open fun onCreateViewHolder(binder: BIND, viewType: Int) {}
+
+    open fun getView(parent: ViewGroup, viewType: Int): View {
+        @LayoutRes val layoutResId = getLayout(viewType)
         return LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
     }
 
     @LayoutRes
-    open fun getItemLayoutId(viewType: Int): Int = defaultLayoutId
+    open fun getLayout(viewType: Int): Int = defaultLayoutId
 
     open fun getViewHolder(itemView: View, viewType: Int): Holder<BIND> {
-        @LayoutRes val brId = getHolderBrId(viewType)
+        @LayoutRes val brId = getBrId(viewType)
         return Holder(itemView, brId)
     }
 
-    open fun getHolderBrId(viewType: Int): Int = defaultBrId
+    open fun getBrId(viewType: Int): Int = defaultBrId
 
-    open fun onCreateViewHolder(binder: BIND, viewType: Int) {
-    }
 
     class Holder<BIND : ViewDataBinding>(itemView: View, val brId: Int) : RecyclerView.ViewHolder(itemView) {
         var itemBinding: BIND = DataBindingUtil.bind(itemView)!!
