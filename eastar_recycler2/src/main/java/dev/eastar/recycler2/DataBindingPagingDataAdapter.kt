@@ -5,6 +5,6 @@ package dev.eastar.recycler2
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 
-open class DataBindingListAdapter<DATA>(
+open class DataBindingPagingDataAdapter<DATA : Any>(
     itemCallback: DiffUtil.ItemCallback<DATA>,
-) : BindingListAdapter<DATA, ViewDataBinding>(itemCallback)
+) : BindingPagingDataAdapter<DATA, ViewDataBinding>(itemCallback)

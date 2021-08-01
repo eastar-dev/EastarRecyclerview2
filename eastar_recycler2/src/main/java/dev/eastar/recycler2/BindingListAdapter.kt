@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
+import androidx.annotation.LayoutRes
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -15,13 +16,20 @@ import androidx.recyclerview.widget.RecyclerView
 
 open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
     @NonNull itemCallback: DiffUtil.ItemCallback<DATA>,
-    private val layoutResId: Int = NoResId,
-    private val brId: Int = NoBrId
+    private val defaultLayoutId: Int = BindingPagingDataAdapter.NO_ID,
+    private val defaultBrId: Int = BindingPagingDataAdapter.NO_ID
 ) : ListAdapter<DATA, BindingListAdapter.Holder<BIND>>(itemCallback) {
 
-    companion object {
-        const val NoBrId: Int = -1
-        const val NoResId: Int = -1
+    @CallSuper
+    override fun onBindViewHolder(holder: Holder<BIND>, position: Int) {
+        if (holder.brId > NO_ID) {
+            holder.itemBinding.setVariable(holder.brId, getItem(position))
+            holder.itemBinding.executePendingBindings()
+        }
+        onBindViewHolder(holder.itemBinding, getItem(position))
+    }
+
+    open fun onBindViewHolder(binder: BIND, data: DATA?) {
     }
 
     @CallSuper
@@ -33,31 +41,28 @@ open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
     }
 
     open fun getItemView(parent: ViewGroup, viewType: Int): View {
+        @LayoutRes val layoutResId = getItemLayoutId(viewType)
         return LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
     }
 
+    @LayoutRes
+    open fun getItemLayoutId(viewType: Int): Int = defaultLayoutId
+
     open fun getViewHolder(itemView: View, viewType: Int): Holder<BIND> {
-        return Holder(itemView)
+        @LayoutRes val brId = getHolderBrId(viewType)
+        return Holder(itemView, brId)
     }
+
+    open fun getHolderBrId(viewType: Int): Int = defaultBrId
 
     open fun onCreateViewHolder(binder: BIND, viewType: Int) {
     }
 
-    @CallSuper
-    override fun onBindViewHolder(holder: Holder<BIND>, position: Int) {
-        if (brId > NoBrId) {
-            holder.itemBinding.setVariable(brId, getItem(position))
-            holder.itemBinding.executePendingBindings()
-        }
-        onBindViewHolder(holder.itemBinding, getItem(position))
-    }
-
-    open fun onBindViewHolder(binder: BIND, data: DATA) {
-    }
-
-    class Holder<BIND : ViewDataBinding>(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class Holder<BIND : ViewDataBinding>(itemView: View, val brId: Int) : RecyclerView.ViewHolder(itemView) {
         var itemBinding: BIND = DataBindingUtil.bind(itemView)!!
     }
 
-    fun getItemAtPosition(position: Int): DATA = getItem(position)
+    companion object {
+        const val NO_ID: Int = -1
+    }
 }
