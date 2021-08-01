@@ -7,4 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 
 open class DataBindingPagingDataAdapter<DATA : Any>(
     itemCallback: DiffUtil.ItemCallback<DATA>,
-) : BindingPagingDataAdapter<DATA, ViewDataBinding>(itemCallback)
+    defaultLayoutId: Int,
+    defaultBrId: Int,
+) : BindingPagingDataAdapter<DATA, ViewDataBinding>(
+    itemCallback,
+    defaultLayoutId,
+    defaultBrId
+)

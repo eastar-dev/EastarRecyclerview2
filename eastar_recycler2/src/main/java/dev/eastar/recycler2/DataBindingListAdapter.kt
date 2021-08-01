@@ -7,4 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 
 open class DataBindingListAdapter<DATA>(
     itemCallback: DiffUtil.ItemCallback<DATA>,
-) : BindingListAdapter<DATA, ViewDataBinding>(itemCallback)
+    defaultLayoutId: Int,
+    defaultBrId: Int,
+) : BindingListAdapter<DATA, ViewDataBinding>(
+    itemCallback,
+    defaultLayoutId,
+    defaultBrId
+)
