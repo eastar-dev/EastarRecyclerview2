@@ -37,7 +37,7 @@ open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
 
     open fun getBindingItem(data: DATA): Any = data as Any
 
-    open fun onBindViewHolder(binder: BIND, data: DATA) {}
+    open fun onBindViewHolder(itemBinding: BIND, data: DATA) {}
 
     @CallSuper
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<BIND> {
@@ -47,7 +47,7 @@ open class BindingListAdapter<DATA, BIND : ViewDataBinding>(
         return holder
     }
 
-    open fun onCreateViewHolder(binder: BIND, viewType: Int) {}
+    open fun onCreateViewHolder(itemBinding: BIND, viewType: Int) {}
 
     open fun getView(parent: ViewGroup, viewType: Int): View {
         val layoutResId = getLayout(viewType)
