@@ -9,17 +9,18 @@ import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.annotation.NonNull
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 
 open class BindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
     @NonNull itemCallback: DiffUtil.ItemCallback<DATA>,
     private val defaultLayoutId: Int = NO_ID,
-    private val defaultBrId: Int = NO_ID
-) : PagingDataAdapter<DATA, BindingPagingDataAdapter.Holder<BIND>>(itemCallback) {
+    private val defaultBrId: Int = NO_ID,
+) : PagingDataAdapter<DATA, Holder<BIND>>(itemCallback) {
+
+    override fun getItemViewType(position: Int): Int =
+        (getItem(position) as? ViewType)?.getViewType() ?: super.getItemViewType(position)
 
     @CallSuper
     override fun onBindViewHolder(holder: Holder<BIND>, position: Int) {
@@ -49,7 +50,7 @@ open class BindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
     open fun onCreateViewHolder(binder: BIND, viewType: Int) {}
 
     open fun getView(parent: ViewGroup, viewType: Int): View {
-        @LayoutRes val layoutResId = getLayout(viewType)
+        val layoutResId = getLayout(viewType)
         return LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
     }
 
@@ -57,14 +58,9 @@ open class BindingPagingDataAdapter<DATA : Any, BIND : ViewDataBinding>(
     open fun getLayout(viewType: Int): Int = defaultLayoutId
 
     open fun getViewHolder(itemView: View, viewType: Int): Holder<BIND> {
-        @LayoutRes val brId = getBrId(viewType)
+        val brId = getBrId(viewType)
         return Holder(itemView, brId)
     }
 
     open fun getBrId(viewType: Int): Int = defaultBrId
-
-
-    class Holder<BIND : ViewDataBinding>(itemView: View, val brId: Int) : RecyclerView.ViewHolder(itemView) {
-        var itemBinding: BIND = DataBindingUtil.bind(itemView)!!
-    }
 }
