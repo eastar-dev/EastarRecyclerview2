@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import dev.eastar.recycler2.BindingListAdapter
+import dev.eastar.recycler2.Holder
 import dev.eastar.recyclerview.databinding.RecyclerviewDemoBinding
 import dev.eastar.recyclerview.databinding.RecyclerviewDemoItemWithoutDatabindingBinding
 import dev.eastar.recyclerview.model.*
