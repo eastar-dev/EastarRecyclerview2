@@ -31,6 +31,13 @@ dependencies {
 }
 
 //https://developer.android.com/studio/build/maven-publish-plugin
+//run gradle publishToMavenLocal
+//and check
+// cd ~/.m2/repository/com/example/MyLibrary/EastarRecyclerview2
+//EastarRecyclerview2-1.0.pom
+//EastarRecyclerview2-1.0.aar
+//EastarRecyclerview2-1.0.module
+
 // Because the components are created only during the afterEvaluate phase, you must
 // configure your publications using the afterEvaluate() lifecycle method.
 afterEvaluate {
