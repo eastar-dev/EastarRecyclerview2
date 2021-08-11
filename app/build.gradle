@@ -48,5 +48,5 @@ dependencies {
 //    implementation 'androidx.paging:paging-runtime-ktx:3.0.1'
     implementation project(":eastar_recycler2")
 //    implementation 'com.github.eastar-dev:EastarRecyclerview2:6235199880'
-    implementation 'com.github.eastar-dev.EastarRecyclerview2:final:e0cabfce14'
+//    implementation 'com.github.eastar-dev.EastarRecyclerview2:final:e0cabfce14'
 }

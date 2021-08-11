@@ -21,10 +21,10 @@ class BindingViewListAdapterDemo : AppCompatActivity() {
     }
 
     class DemoAdapter : BindingListAdapter<Data, RecyclerviewDemoItemWithoutDatabindingBinding>(diffUtil, R.layout.recyclerview_demo_item_without_databinding) {
-        override fun onBindViewHolder(binder: RecyclerviewDemoItemWithoutDatabindingBinding, data: Data) {
-            super.onBindViewHolder(binder, data)
-            binder.imageView.setImageUrl(data.icon)
-            binder.textView.text = data.name
+        override fun onBindViewHolder(itemBinding: RecyclerviewDemoItemWithoutDatabindingBinding, data: Data) {
+            super.onBindViewHolder(itemBinding, data)
+            itemBinding.imageView.setImageUrl(data.icon)
+            itemBinding.textView.text = data.name
         }
     }
 }

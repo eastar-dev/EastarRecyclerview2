@@ -1,5 +1,6 @@
 package dev.eastar.recyclerview
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +9,6 @@ import androidx.recyclerview.widget.DiffUtil
 import dev.eastar.recycler2.BindingListAdapter
 import dev.eastar.recycler2.Holder
 import dev.eastar.recyclerview.databinding.RecyclerviewDemoBinding
-import dev.eastar.recyclerview.databinding.RecyclerviewDemoItemWithoutDatabindingBinding
 import dev.eastar.recyclerview.model.*
 
 class MultiViewTypeBindingViewListAdapterDemo : AppCompatActivity() {
@@ -59,10 +59,12 @@ class MultiViewTypeBindingViewListAdapterDemo : AppCompatActivity() {
     }
 
     class DemoAdapter : BindingListAdapter<ListItem, ViewDataBinding>(diffUtil) {
+        @SuppressLint("MissingSuperCall")
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder<ViewDataBinding> {
             return super.onCreateViewHolder(parent, viewType)
         }
 
+        @SuppressLint("MissingSuperCall")
         override fun onBindViewHolder(holder: Holder<ViewDataBinding>, position: Int) {
             super.onBindViewHolder(holder, position)
         }
