@@ -45,8 +45,6 @@ dependencies {
     debugImplementation 'com.github.eastar-dev.EastarLog2:log:2.1.9'
     releaseImplementation 'com.github.eastar-dev.EastarLog2:logNoOp:2.1.9'
 
-//    implementation 'androidx.paging:paging-runtime-ktx:3.0.1'
-    implementation project(":eastar_recycler2")
-//    implementation 'com.github.eastar-dev:EastarRecyclerview2:6235199880'
-//    implementation 'com.github.eastar-dev.EastarRecyclerview2:final:e0cabfce14'
+//    implementation project(":eastar_recycler2")
+    implementation 'com.github.eastar-dev:EastarRecyclerview2:e2ff8f1ba1'
 }
