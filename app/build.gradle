@@ -22,8 +22,12 @@ android {
     kotlinOptions { jvmTarget = '1.8' }
 }
 repositories {
-    jcenter()
-    maven { url "https://jitpack.io" }
+
+}
+android {
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    }
 }
 dependencies {
 
@@ -41,7 +45,7 @@ dependencies {
     debugImplementation 'com.github.eastar-dev.EastarLog2:log:2.1.9'
     releaseImplementation 'com.github.eastar-dev.EastarLog2:logNoOp:2.1.9'
 
-    debugImplementation project(':eastar_recycler2')
-    releaseImplementation 'com.github.eastar-dev:EastarRecyclerview2:5fc255ef6f'
-
+    implementation 'androidx.paging:paging-runtime-ktx:3.0.1'
+    implementation project(":eastar_recycler2")
+//    implementation 'com.github.eastar-dev:EastarRecyclerview2:6235199880'
 }

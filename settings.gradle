@@ -1,3 +1,3 @@
-//include ':app'
+include ':app'
 include ':eastar_recycler2'
 rootProject.name = "EastarRecyclerview"
