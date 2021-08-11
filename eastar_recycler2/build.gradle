@@ -30,17 +30,7 @@ dependencies {
     implementation 'androidx.paging:paging-runtime-ktx:3.0.1'
 }
 
-//publishing {
-//    publications {
-//        maven(MavenPublication) {
-//            groupId = 'com.github.eastar-dev'
-//            artifactId = 'EastarRecyclerview2'
-//            version = '2.1'
-//        }
-//    }
-//}
-
-
+//https://developer.android.com/studio/build/maven-publish-plugin
 // Because the components are created only during the afterEvaluate phase, you must
 // configure your publications using the afterEvaluate() lifecycle method.
 afterEvaluate {
